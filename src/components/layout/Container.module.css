@@ -6,8 +6,8 @@
     flex-wrap: wrap;
 }
 
-.min-height{
-    min-height: 75%;
+.min_height{
+    min-height: 75vh;
 }
 
 .start{
