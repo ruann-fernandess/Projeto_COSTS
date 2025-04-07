@@ -32,6 +32,17 @@
       },
       "cost": 0,
       "services": []
+    },
+    {
+      "id": "ef96",
+      "name": "Olha o teste bb",
+      "budget": "9999999",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
     }
   ],
   "categories": [
