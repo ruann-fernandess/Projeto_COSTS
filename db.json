@@ -43,6 +43,17 @@
       },
       "cost": 0,
       "services": []
+    },
+    {
+      "id": "371c",
+      "name": "Inclusão Digital para Idosos",
+      "budget": "5555",
+      "category": {
+        "id": "4",
+        "name": "Planejaccmento"
+      },
+      "cost": 0,
+      "services": []
     }
   ],
   "categories": [
