@@ -8,6 +8,7 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Projects from './components/pages/Projects'
 
+//json-server --watch db.json --port 5000
 function App() {
   return (
     <Router>
