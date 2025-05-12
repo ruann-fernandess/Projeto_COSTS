@@ -1,17 +1,5 @@
 {
-  "projects": [
-    {
-      "id": "468f",
-      "name": "Ruan Fernandes Mendonça",
-      "budget": "2000",
-      "category": {
-        "id": "4",
-        "name": "Planejaccmento"
-      },
-      "cost": 0,
-      "services": []
-    }
-  ],
+  "projects": [],
   "categories": [
     {
       "id": "1",
