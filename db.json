@@ -2,11 +2,11 @@
   "projects": [
     {
       "id": "cae0",
-      "name": "Teste 2",
-      "budget": "5000",
+      "name": "Teste Atualizado",
+      "budget": "10001",
       "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
+        "id": "4",
+        "name": "Planejacmento"
       },
       "cost": 0,
       "services": []
