@@ -8,8 +8,15 @@
         "id": "4",
         "name": "Planejacmento"
       },
-      "cost": 0,
-      "services": []
+      "cost": 100,
+      "services": [
+        {
+          "name": "Teste 3",
+          "cost": "100",
+          "description": "Pirulito pros dev",
+          "id": "915425d6-bbfa-428a-a180-268d4fe15b1c"
+        }
+      ]
     }
   ],
   "categories": [
@@ -27,7 +34,7 @@
     },
     {
       "id": "4",
-      "name": "Planejacmento"
+      "name": "Planejamento"
     }
   ]
 }
