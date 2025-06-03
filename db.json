@@ -17,6 +17,17 @@
           "id": "915425d6-bbfa-428a-a180-268d4fe15b1c"
         }
       ]
+    },
+    {
+      "id": "1744",
+      "name": "Inclusão Digital para Idosos",
+      "budget": "50000000",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": []
     }
   ],
   "categories": [
