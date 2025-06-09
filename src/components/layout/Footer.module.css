@@ -1,34 +1,45 @@
-.footer{
-    background-color: #222;
-    color: #fff;
-    padding: 3em;
-    text-align: center;
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 3em;
+  text-align: center;
 }
 
-.social_list{
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
+.social_list {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.social_list li{
-    margin: 0 1em;
+.social_list li {
+  margin: 0 1em;
 }
 
-.social_list li:hover{
-    color: #ffbb33;
+/* link dentro do li que segura o ícone */
+.social_list li a {
+  color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
-.social_list svg{
-    font-size: 1.5em;
-    cursor: pointer;
+.social_list li a:hover,
+.social_list li a:focus {
+  color: #ffbb33;
+  outline: none;
 }
 
-.copy_right{
-    margin-top: 2em;
+.copy_right {
+  margin-top: 2em;
 }
 
-.copy_right span{
-    font-weight: bold;
-    color: #ffbb33;
+.copy_right span {
+  font-weight: bold;
+  color: #ffbb33;
 }
