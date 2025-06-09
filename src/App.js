@@ -12,7 +12,7 @@ import Project from './components/pages/Project'
 //json-server --watch db.json --port 5000
 function App() {
   return (
-    <Router basename="/Projeto_COSTS">
+    <Router basename="/Projeto_COSTS/">
       <Navbar/>
         <Container customClass="min_height">
           <Routes>
