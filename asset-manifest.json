@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Projeto_COSTS/static/css/main.3a3fe6dd.css",
-    "main.js": "/Projeto_COSTS/static/js/main.ba4776b0.js",
+    "main.css": "/Projeto_COSTS/static/css/main.21602d8b.css",
+    "main.js": "/Projeto_COSTS/static/js/main.df212aa3.js",
     "static/media/savings.svg": "/Projeto_COSTS/static/media/savings.25a5174d3c0ce57522d68f3ba58b7407.svg",
     "index.html": "/Projeto_COSTS/index.html",
     "static/media/loading.svg": "/Projeto_COSTS/static/media/loading.5ff8599871e56a8a672f0861a01ef3bc.svg",
-    "main.3a3fe6dd.css.map": "/Projeto_COSTS/static/css/main.3a3fe6dd.css.map",
-    "main.ba4776b0.js.map": "/Projeto_COSTS/static/js/main.ba4776b0.js.map"
+    "main.21602d8b.css.map": "/Projeto_COSTS/static/css/main.21602d8b.css.map",
+    "main.df212aa3.js.map": "/Projeto_COSTS/static/js/main.df212aa3.js.map"
   },
   "entrypoints": [
-    "static/css/main.3a3fe6dd.css",
-    "static/js/main.ba4776b0.js"
+    "static/css/main.21602d8b.css",
+    "static/js/main.df212aa3.js"
   ]
 }
