@@ -2,7 +2,7 @@
   "name": "costs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ruann-fernandess.github.io/Projeto_COSTS",
+  "homepage": "https://ruann-fernandess.github.io/Projeto_COSTS/",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
