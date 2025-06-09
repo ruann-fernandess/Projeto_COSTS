@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="refresh" content="0; URL=/Projeto_COSTS/" />
-  </head>
-  <body></body>
+<head>
+  <meta charset="utf-8"/>
+  <title>Page Not Found</title>
+  <script>
+    // redireciona para index.html preservando rota
+    (function () {
+      var path = window.location.pathname;
+      window.location.href = window.location.origin + window.location.pathname.replace(/^\/[^\/]+/, '') + window.location.hash;
+    })();
+  </script>
+</head>
+<body></body>
 </html>
