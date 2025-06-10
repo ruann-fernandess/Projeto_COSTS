@@ -1,32 +1,27 @@
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ProjectForm from '../project/ProjectForm'
 import styles from './NewProject.module.css'
 
 function NewProject(){
-
     const history = useNavigate()
     
     function createPost(project){
-
-        //initialize costs and services
         project.cost = 0
         project.services = []
+        project.id = Date.now().toString()  // id simples baseado timestamp
 
-        fetch("https://projetocosts-production.up.railway.app/projects", {
-            method: "POST",
-            headers:{
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(project),
-        })
-            .then((resp) => resp.json())
-            .then((data) =>{
-                console.log(data)
-                //redirect
-                history('/projects', { state: { message: 'Projeto criado com sucesso!' } })
+        // Pega projetos já salvos no sessionStorage (array)
+        const storedProjects = sessionStorage.getItem('projects')
+        let projects = storedProjects ? JSON.parse(storedProjects) : []
 
-            }) 
-            .catch(err => console.log(err))
+        // Adiciona o novo projeto
+        projects.push(project)
+
+        // Salva no sessionStorage
+        sessionStorage.setItem('projects', JSON.stringify(projects))
+
+        // Redireciona para a lista
+        history('/projects', { state: { message: 'Projeto criado com sucesso!' } })
     }
 
     return(
