@@ -9,7 +9,7 @@ function ProjectForm ({handleSubmit ,btnText, projectData}){
     const [project, setProject] = useState(projectData || {})
 
     useEffect(() => {
-        fetch("http://localhost:5000/categories",{
+        fetch("https://projetocosts-production.up.railway.app/categories",{
             method:"GET",
             headers:{
                 'Content-Type': 'aplication/json'

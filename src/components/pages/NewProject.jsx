@@ -12,7 +12,7 @@ function NewProject(){
         project.cost = 0
         project.services = []
 
-        fetch("http://localhost:5000/projects", {
+        fetch("https://projetocosts-production.up.railway.app/projects", {
             method: "POST",
             headers:{
                 "content-type": "application/json",

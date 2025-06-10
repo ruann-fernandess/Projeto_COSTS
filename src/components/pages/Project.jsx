@@ -21,7 +21,7 @@ function Project(){
 
     useEffect(() =>{
         setTimeout(() => {
-            fetch(`http://localhost:5000/projects/${id}`, {
+            fetch(`https://projetocosts-production.up.railway.app/projects/${id}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ function editPost(project){
         return false
     }
 
-    fetch(`http://localhost:5000/projects/${project.id}`, {
+    fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
         method:'PATCH',
         headers: {
             'Content-Type':'application/json'
@@ -82,7 +82,7 @@ function createService(project){
     project.cost = newCost
 
     //update project
-    fetch(`http://localhost:5000/projects/${project.id}`, {
+    fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
         method: 'PATCH',
         headers:{
             'Content-Type': 'application/json'
@@ -109,7 +109,7 @@ function removeService(id, cost){
     projectUpdated.services = servicesUpdate
     projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
 
-    fetch(`http://localhost:5000/projects/${projectUpdated.id}`,{
+    fetch(`https://projetocosts-production.up.railway.app/projects/${projectUpdated.id}`,{
         method: 'PATCH',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(projectUpdated)
