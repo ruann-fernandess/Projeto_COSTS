@@ -9,107 +9,130 @@ import Message from '../layout/Message'
 import ServiceForm from '../service/ServiceForm'
 import ServiceCard from '../service/ServiceCard'
 
+
 function Project(){
     const {id} = useParams()
-    const [project, setProject] = useState(null)
+    const [project, setProject] = useState([])
     const [services, setServices] = useState([])
     const [showProjectForm, setShowProjectForm] = useState(false)
     const [showServiceForm, setShowServiceForm] = useState(false)
     const [message, setMessage] = useState()
     const [type, setType] = useState()
 
-    useEffect(() => {
-        // Tentar carregar do sessionStorage primeiro
-        const storedProject = sessionStorage.getItem(`project_${id}`)
-        if(storedProject){
-            const parsedProject = JSON.parse(storedProject)
-            setProject(parsedProject)
-            setServices(parsedProject.services || [])
-        } else {
-            // Se não tiver no sessionStorage, buscar do backend
+    useEffect(() =>{
+        setTimeout(() => {
             fetch(`https://projetocosts-production.up.railway.app/projects/${id}`, {
-                method: "GET",
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then(resp => resp.json())
-            .then((data) => {
-                setProject(data)
-                setServices(data.services || [])
-                // Salvar no sessionStorage
-                sessionStorage.setItem(`project_${id}`, JSON.stringify(data))
-            })
-            .catch(err => console.log(err))
-        }
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(resp => resp.json())
+        .then((data) => {
+            setProject(data)
+            setServices(data.services)
+        })
+        .catch(err => console.log)
+        }, 1500)
     }, [id])
 
-    function saveProjectLocally(updatedProject){
-        setProject(updatedProject)
-        setServices(updatedProject.services || [])
-        sessionStorage.setItem(`project_${id}`, JSON.stringify(updatedProject))
+function editPost(project){
+    setMessage('')
+    //budget validation
+    if(project.budget < project.cost){
+        setMessage('Orçamento não pode ser menor que o custo do projeto!')
+        setType('error')
+        return false
     }
 
-    function editPost(updatedProject){
-        setMessage('')
-        if(updatedProject.budget < updatedProject.cost){
-            setMessage('Orçamento não pode ser menor que o custo do projeto!')
-            setType('error')
-            return false
-        }
-        // Atualiza localmente (sem backend)
-        saveProjectLocally(updatedProject)
+    fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
+        method:'PATCH',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(project), 
+    })
+    .then(resp => resp.json())
+    .then((data) => {
+        setProject(data)
         setShowProjectForm(false)
         setMessage('Projeto atualizado!')
-        setType('success')
+        setType('success')  
+    })
+    .catch(err => console.log(err))
+}
+
+function createService(project){
+    setMessage('')
+    //last service
+    const lastService = project.services[project.services.length -1]
+
+    lastService.id = uuidv4()
+
+    const newCost = parseFloat(project.cost) + parseFloat(lastService.cost)
+
+    //max value validation
+    if(newCost > parseFloat(project.budget)){
+        setMessage('Orçamento ultrapassado, verifique o valor do serviço')
+        setType('error')
+        project.services.pop()
+        return false    
     }
 
-    function createService(projectWithNewService){
-        setMessage('')
-        const lastService = projectWithNewService.services[projectWithNewService.services.length -1]
-        lastService.id = uuidv4()
+    //add service cost to project total cost
+    project.cost = newCost
 
-        const newCost = parseFloat(projectWithNewService.cost) + parseFloat(lastService.cost)
-
-        if(newCost > parseFloat(projectWithNewService.budget)){
-            setMessage('Orçamento ultrapassado, verifique o valor do serviço')
-            setType('error')
-            projectWithNewService.services.pop()
-            return false    
-        }
-
-        projectWithNewService.cost = newCost
-
-        // Atualiza localmente
-        saveProjectLocally(projectWithNewService)
+    //update project
+    fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
+        method: 'PATCH',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(project)
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+        setServices(data.services)
         setShowServiceForm(false)
         setMessage('Serviço adicionado com sucesso!')
         setType('success')
-    }
+    })
+    .catch(err => console.log(err))
+}
 
-    function removeService(serviceId, cost){
-        const servicesUpdated = services.filter(service => service.id !== serviceId)
+function removeService(id, cost){
+    const servicesUpdate = project.services.filter(
+        (service) => service.id !== id
+    )
 
-        const updatedProject = {
-            ...project,
-            services: servicesUpdated,
-            cost: parseFloat(project.cost) - parseFloat(cost)
-        }
+    const projectUpdated = project
 
-        saveProjectLocally(updatedProject)
+    projectUpdated.services = servicesUpdate
+    projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
+
+    fetch(`https://projetocosts-production.up.railway.app/projects/${projectUpdated.id}`,{
+        method: 'PATCH',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(projectUpdated)
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+        setProject(projectUpdated)
+        setServices(servicesUpdate)
         setMessage('Serviço removido com sucesso!')
-        setType('success')
-    }
+    })
+    .catch(err => console.log(err))
+}
 
-    function toggleProjectForm(){
-        setShowProjectForm(!showProjectForm)
-    }
+function toggleProjectForm(){
+    setShowProjectForm(!showProjectForm)
+}
 
-    function toggleServiceForm(){
-        setShowServiceForm(!showServiceForm)
-    }
-
+function toggleServiceForm(){
+    setShowServiceForm(!showServiceForm)
+}
     return(
         <> 
-        {project && project.name ? (
+        {project.name? (
             <div className={styles.project_details}>
                 <Container customClass="column">
                     {message && <Message type={type} msg={message}/>}
@@ -120,9 +143,15 @@ function Project(){
                         </button>
                         {!showProjectForm ? (
                             <div className={styles.project_info}>
-                                <p><span>Categoria:</span> {project.category.name}</p>
-                                <p><span>Total do Orçamento:</span> R${project.budget}</p>
-                                <p><span>Total Utilizado</span> R${project.cost}</p>
+                                <p>
+                                    <span>Categoria:</span> {project.category.name}
+                                </p>
+                                <p>
+                                    <span>Total do Orçamento:</span> R${project.budget}
+                                </p>
+                                <p>
+                                    <span>Total Utilizado</span> R${project.cost}
+                                </p>
                             </div>
                         ) : (
                             <div className={styles.project_info}>
@@ -136,39 +165,36 @@ function Project(){
                             {!showServiceForm ? 'Adicionar serviço' : 'Fechar'}
                         </button>
                         <div className={styles.project_info}>
-                            {showServiceForm && (
-                                <ServiceForm
-                                    handleSubmit={createService}
-                                    btnText="Adicionar serviço"
-                                    projectData={project}
-                                />
-                            )}
+                            {showServiceForm && (<ServiceForm
+                                handleSubmit={createService}
+                                btnText="Adicionar serviço"
+                                projectData={project}
+                            />)}
                         </div>
                     </div>
                     <h2>Serviços</h2>
                     <Container customClass='start'>
-                        {services.length > 0 ? (
-                            services.map(service => (
+                        {services.length > 0 &&
+                            services.map((service) => (
                                 <ServiceCard
-                                    id={service.id}
-                                    name={service.name}
-                                    cost={service.cost}
-                                    description={service.description}
-                                    key={service.id}
-                                    handleRemove={removeService}
+                                    id = {service.id}
+                                    name = {service.name}
+                                    cost = {service.cost}
+                                    description = {service.description}
+                                    key = {service.id}
+                                    handleRemove = {removeService}
                                 />
                             ))
-                        ) : (
-                            <p>Não há serviços cadastrados.</p>
-                        )}
+                        }
+                        {services.length ===0 && <p>Não há serviços cadastrados.</p>}
                     </Container>
                 </Container>
             </div>
-        ) : (
-            <Loading />
+        ): (
+            <Loading></Loading>
         )}
         </>
     )
 }
 
-export default Project
+export default Project 
