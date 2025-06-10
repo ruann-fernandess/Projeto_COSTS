@@ -1,6 +1,13 @@
-function Contact(){
-    return(
-        <h1>Contact</h1>
+import styles from './Contact.module.css'
+import LinkButton from '../layout/LinkButton'
+
+function Contact() {
+    return (
+        <section className={styles.contact_container}>
+            <h1>Fale com a <span>Costs</span></h1>
+            <p>Estamos aqui para ajudar! Envie suas dúvidas, sugestões ou feedbacks.</p>
+            <LinkButton to="/support" text="Suporte"/>
+        </section>
     )
 }
 
