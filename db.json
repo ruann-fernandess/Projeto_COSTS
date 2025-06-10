@@ -1,5 +1,28 @@
 {
-  "projects": [],
+  "projects": [
+    {
+      "id": "a991",
+      "name": "Desenvolvimento COSTS",
+      "budget": "15000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "cc8c",
+      "name": "Projeto Liryou",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "budget": "12000",
+      "cost": 0,
+      "services": []
+    }
+  ],
   "categories": [
     {
       "id": "1",
