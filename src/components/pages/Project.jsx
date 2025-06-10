@@ -18,22 +18,46 @@ function Project(){
     const [showServiceForm, setShowServiceForm] = useState(false)
     const [message, setMessage] = useState()
     const [type, setType] = useState()
+//------------------------------------------------ AREA DE TESTE ------------------------------------------------//
+    useEffect(() => {
+  const fetchProject = () => {
+    fetch(`https://projetocosts-production.up.railway.app/projects/${id}`, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setProject(data)
+        setServices(data.services)
 
-    useEffect(() =>{
+        // Remove o projeto automaticamente após 1 hora (3600000 ms)
         setTimeout(() => {
-            fetch(`https://projetocosts-production.up.railway.app/projects/${id}`, {
-            method: "GET",
+          fetch(`https://projetocosts-production.up.railway.app/projects/${id}`, {
+            method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+              'Content-Type': 'application/json'
             }
-        }).then(resp => resp.json())
-        .then((data) => {
-            setProject(data)
-            setServices(data.services)
-        })
-        .catch(err => console.log)
-        }, 1500)
-    }, [id])
+          })
+            .then(() => {
+              setMessage('Projeto expirado e removido automaticamente.')
+              setType('error')
+              setProject({})
+              setServices([])
+            })
+            .catch((err) => console.log(err))
+        },3000) // 3s
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const timer = setTimeout(fetchProject, 1500)
+
+  return () => clearTimeout(timer) // Limpa o timer se o componente for desmontado
+}, [id])
+
+//------------------------------------------------ AREA DE TESTE ------------------------------------------------//
 
 function editPost(project){
     setMessage('')
