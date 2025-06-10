@@ -1,4 +1,4 @@
-import {parse, v4 as uuidv4} from 'uuid'
+import {v4 as uuidv4} from 'uuid'
 import styles from './Project.module.css'
 import { useParams } from 'react-router-dom'
 import { useState,useEffect } from 'react'
@@ -68,7 +68,6 @@ function createService(project){
 
     lastService.id = uuidv4()
 
-    const lastServiceCost = lastService.cost
     const newCost = parseFloat(project.cost) + parseFloat(lastService.cost)
 
     //max value validation
