@@ -17,14 +17,16 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"npm run backend\" \"react-scripts start\"",
-    "backend": "json-server --watch db.json --port 5000",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "start": "json-server --watch db.json --port $PORT",
+  "dev": "concurrently \"npm run backend\" \"react-scripts start\"",
+  "backend": "json-server --watch db.json --port 5000",
+  "build": "react-scripts build",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
