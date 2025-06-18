@@ -17,8 +17,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-  "start": "json-server --watch db.json --port $PORT",
-  "dev": "concurrently \"npm run backend\" \"react-scripts start\"",
+  "start": "react-scripts start",
+  "server": "json-server --watch db.json --port 5000",
+  "dev": "concurrently \"npm run server\" \"npm start\"",
   "backend": "json-server --watch db.json --port 5000",
   "build": "react-scripts build",
   "predeploy": "npm run build",

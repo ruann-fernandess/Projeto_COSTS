@@ -59,7 +59,7 @@ function Projects(){
             {message && <Message type="success" msg={message} />}
             {projectMessage && <Message type="success" msg={projectMessage} />}
             <Container customClass="start">
-                {projects.lenght > 0 && 
+                {projects.length > 0 && 
                     projects.map((project) => <ProjectCard 
                     name={project.name}
                     id={project.id}
@@ -69,7 +69,7 @@ function Projects(){
                     handleRemove={removeProject}
                     />)}
                 {!removeLoading && <Loading/>}
-                {removeLoading && projects.lenght === 0 && (
+                {removeLoading && projects.length === 0 && (
                     <p>Não há projetos cadastrados!</p>
                 )}
             </Container>
