@@ -18,15 +18,21 @@ function NewProject(){
                 "content-type": "application/json",
             },
             body: JSON.stringify(project),
-        })*/
+        })
             .then((resp) => resp.json())
             .then((data) =>{
                 console.log(data)
                 //redirect
-                history('/projects', { state: { message: 'Projeto criado com sucesso, porém não armazenado por questões de segurança' } })
+                history('/projects', { state: { message: 'Projeto criado com sucesso' } })
 
             }) 
-            .catch(err => console.log(err))
+            .catch(err => console.log(err))*/
+
+         history('/projects', {
+            state: {
+                message: 'Projeto criado com sucesso, porém não armazenado por questões de segurança',
+            },
+        }) 
     }
 
     return(
