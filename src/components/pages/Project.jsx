@@ -44,7 +44,7 @@ function editPost(project){
         return false
     }
 
-    fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
+    /*fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
         method:'PATCH',
         headers: {
             'Content-Type':'application/json'
@@ -58,7 +58,12 @@ function editPost(project){
         setMessage('Projeto atualizado!')
         setType('success')  
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err))*/
+
+    setProject(project)
+    setShowProjectForm(false)
+    setMessage('Projeto atualizado! (mudanças não armazenadas por questões de segurança.)')
+    setType('success')
 }
 
 function createService(project){
@@ -82,7 +87,7 @@ function createService(project){
     project.cost = newCost
 
     //update project
-    fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
+    /*fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
         method: 'PATCH',
         headers:{
             'Content-Type': 'application/json'
@@ -96,7 +101,11 @@ function createService(project){
         setMessage('Serviço adicionado com sucesso!')
         setType('success')
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err))*/
+    setServices(data.services)
+    setShowServiceForm(false)
+    setMessage('Serviço adicionado com sucesso! (mudanças não armazenadas por questões de segurança.)')
+    setType('success')
 }
 
 function removeService(id, cost){
@@ -109,7 +118,7 @@ function removeService(id, cost){
     projectUpdated.services = servicesUpdate
     projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
 
-    fetch(`https://projetocosts-production.up.railway.app/projects/${projectUpdated.id}`,{
+    /*fetch(`https://projetocosts-production.up.railway.app/projects/${projectUpdated.id}`,{
         method: 'PATCH',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(projectUpdated)
@@ -120,7 +129,11 @@ function removeService(id, cost){
         setServices(servicesUpdate)
         setMessage('Serviço removido com sucesso!')
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err))*/
+
+    setProject(projectUpdated)
+    setServices(servicesUpdate)
+    setMessage('Serviço removido com sucesso! (mudanças não armazenadas por questões de segurança.)')
 }
 
 function toggleProjectForm(){
