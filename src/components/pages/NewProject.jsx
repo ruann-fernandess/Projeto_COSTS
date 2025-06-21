@@ -12,18 +12,18 @@ function NewProject(){
         project.cost = 0
         project.services = []
 
-        fetch("https://projetocosts-production.up.railway.app/projects", {
+        /*fetch("https://projetocosts-production.up.railway.app/projects", {
             method: "POST",
             headers:{
                 "content-type": "application/json",
             },
             body: JSON.stringify(project),
-        })
+        })*/
             .then((resp) => resp.json())
             .then((data) =>{
                 console.log(data)
                 //redirect
-                history('/projects', { state: { message: 'Projeto criado com sucesso!' } })
+                history('/projects', { state: { message: 'Projeto criado com sucesso, porém não armazenado por questões de segurança' } })
 
             }) 
             .catch(err => console.log(err))
