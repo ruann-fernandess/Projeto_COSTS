@@ -27,7 +27,7 @@ function NewProject(){
 
             }) 
             .catch(err => console.log(err))*/
-         console.log(data)
+         
          history('/projects', {
             state: {
                 message: 'Projeto criado com sucesso! (mudanças não armazenadas por questões de segurança.)',
