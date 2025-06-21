@@ -37,7 +37,7 @@ function Projects(){
     }, [])
 
     function removeProject(id){
-        fetch(`https://projetocosts-production.up.railway.app/projects/${id}`,{
+        /*fetch(`https://projetocosts-production.up.railway.app/projects/${id}`,{
             method: 'DELETE',
             headers:{
                 'Content-Type': 'application/json'
@@ -47,7 +47,8 @@ function Projects(){
             setProjects(projects.filter((project) => project.id !== id))
             setProjectMessage('Projeto removido com sucesso!')
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err))*/
+        setProjectMessage('Projeto removido com sucesso! (Mudanças não armazenadas por questões de segurança.)')
     }
 
     return(
