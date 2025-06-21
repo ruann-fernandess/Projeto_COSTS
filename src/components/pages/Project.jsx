@@ -102,7 +102,7 @@ function createService(project){
         setType('success')
     })
     .catch(err => console.log(err))*/
-    setServices(data.services)
+    setServices(services)
     setShowServiceForm(false)
     setMessage('Serviço adicionado com sucesso! (mudanças não armazenadas por questões de segurança.)')
     setType('success')
