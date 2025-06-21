@@ -9,7 +9,20 @@
         "name": "Desenvolvimento"
       },
       "cost": 0,
-      "services": []
+      "services": [
+        {
+          "id": "srv1",
+          "name": "API Setup",
+          "cost": 1000,
+          "description": "Configuração da API e integração inicial."
+        },
+        {
+          "id": "srv2",
+          "name": "Autenticação",
+          "cost": 2000,
+          "description": "Implementação do sistema de login."
+        }
+      ]
     },
     {
       "id": "cc8c",
@@ -20,9 +33,23 @@
       },
       "budget": "12000",
       "cost": 0,
-      "services": []
+      "services": [
+        {
+          "id": "srv3",
+          "name": "Pesquisa de Mercado",
+          "cost": 1500,
+          "description": "Análise de mercado inicial para o projeto."
+        },
+        {
+          "id": "srv4",
+          "name": "Documentação Inicial",
+          "cost": 800,
+          "description": "Criação dos documentos de escopo e viabilidade."
+        }
+      ]
     }
   ],
+
   "categories": [
     {
       "id": "1",
