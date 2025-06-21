@@ -30,7 +30,7 @@ function NewProject(){
          
          history('/projects', {
             state: {
-                message: 'Projeto criado com sucesso! (mudanças não armazenadas por questões de segurança.)',
+                message: 'Projeto criado com sucesso! (Mudanças não armazenadas por questões de segurança.)',
             },
         }) 
     }

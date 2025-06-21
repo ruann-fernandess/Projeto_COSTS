@@ -61,7 +61,7 @@ function editPost(project){
     .catch(err => console.log(err))*/
 
     setShowProjectForm(false)
-    setMessage('Projeto atualizado! (mudanças não armazenadas por questões de segurança.)')
+    setMessage('Projeto atualizado! (Mudanças não armazenadas por questões de segurança.)')
     setType('success')
 }
 
@@ -83,7 +83,7 @@ function createService(project){
     }
 
     //add service cost to project total cost
-    project.cost = newCost
+    //project.cost = newCost
 
     //update project
     /*fetch(`https://projetocosts-production.up.railway.app/projects/${project.id}`, {
@@ -102,7 +102,7 @@ function createService(project){
     })
     .catch(err => console.log(err))*/
     setShowServiceForm(false)
-    setMessage('Serviço adicionado com sucesso! (mudanças não armazenadas por questões de segurança.)')
+    setMessage('Serviço adicionado com sucesso! (Mudanças não armazenadas por questões de segurança.)')
     setType('success')
 }
 
@@ -114,7 +114,7 @@ function removeService(id, cost){
     const projectUpdated = project
 
     projectUpdated.services = servicesUpdate
-    projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
+    //projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
 
     /*fetch(`https://projetocosts-production.up.railway.app/projects/${projectUpdated.id}`,{
         method: 'PATCH',
@@ -129,7 +129,7 @@ function removeService(id, cost){
     })
     .catch(err => console.log(err))*/
 
-    setMessage('Serviço removido com sucesso! (mudanças não armazenadas por questões de segurança.)')
+    setMessage('Serviço removido com sucesso! (Mudanças não armazenadas por questões de segurança.)')
 }
 
 function toggleProjectForm(){
