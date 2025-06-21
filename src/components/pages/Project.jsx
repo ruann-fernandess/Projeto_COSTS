@@ -60,7 +60,6 @@ function editPost(project){
     })
     .catch(err => console.log(err))*/
 
-    setProject(project)
     setShowProjectForm(false)
     setMessage('Projeto atualizado! (mudanças não armazenadas por questões de segurança.)')
     setType('success')
@@ -102,7 +101,6 @@ function createService(project){
         setType('success')
     })
     .catch(err => console.log(err))*/
-    setServices(services)
     setShowServiceForm(false)
     setMessage('Serviço adicionado com sucesso! (mudanças não armazenadas por questões de segurança.)')
     setType('success')
@@ -131,8 +129,6 @@ function removeService(id, cost){
     })
     .catch(err => console.log(err))*/
 
-    setProject(projectUpdated)
-    setServices(servicesUpdate)
     setMessage('Serviço removido com sucesso! (mudanças não armazenadas por questões de segurança.)')
 }
 
